@@ -1,0 +1,11 @@
+[tool.poetry]
+name = "cmelt"
+version = "0.1.0"
+description = "A build system for C/C++ projects."
+license = "MIT"
+authors = ["spyel"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+typer = "^0.20.0"
