@@ -1,8 +1,10 @@
 import os
-import logging
 from typing import Optional
 
 import typer
+
+from .logger import log
+
 
 app = typer.Typer()
 
@@ -15,7 +17,7 @@ def build(
     force: bool = typer.Option(False, '--force', '-f', help='Rebuild all targets regardless of state.')
 ) -> None:
     """Build one or more C/C++ projects defined in the configuration file."""
-    logging.info('🚧 The "build" command is not implemented yet.')
+    log.error('The [red]build[/red] command is not implemented yet.')
 
 
 @app.command()
@@ -24,7 +26,7 @@ def clean(
     project: Optional[str] = typer.Argument(None, help='Project name to clean. If omitted, cleans all projects.')
 ) -> None:
     """Clean build artifacts for one or more projects."""
-    logging.info('🚧 The "clean" command is not implemented yet.')
+    log.error('The [red]build[/red] command is not implemented yet.')
 
 
 @app.callback()
@@ -35,6 +37,10 @@ def main(
     verbose: bool = typer.Option(False, '--verbose', '-v', help='Enable verbose logging output.')
 ) -> None:
     """CMelt – A build system for C/C++ projects."""
+    log.verbose = verbose
+
     if directory:
         os.chdir(directory)
+        log.debug(f'Changed working directory to "{directory}"')
+    
     ctx.obj = {'filepath': filepath}
